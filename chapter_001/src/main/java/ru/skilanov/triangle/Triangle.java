@@ -1,3 +1,5 @@
+package ru.skilanov.triangle;
+
 /**
  * This class find triangle area if it's possible.
  */
@@ -6,34 +8,47 @@ public class Triangle {
      * @param first point a  double.
      * @param second point b double.
      * @param third point c double.
+     * @param fourth side abDistance double.
+     * @param fifth side bcDistance double.
+     * @param sixth side caDistance double.
      */
 
     public Point a;
     public Point b;
     public Point c;
+    double abDistance;
+    double bcDistance;
+    double caDistance;
 
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
         this.b = b;
         this.c = c;
+        abDistance = a.distanceTo(b);
+        bcDistance = b.distanceTo(c);
+        caDistance = c.distanceTo(a);
     }
 
     /**
-     * find side length, checked is it possible to create, find area.
+     * Checked is it possible to create triangle.
      */
 
-    public double area() {
-        double abDistance = a.distanceTo(b);
-        double bcDistance = b.distanceTo(c);
-        double caDistance = c.distanceTo(a);
-
+    public boolean exists() throws Exception {
         if ((abDistance + bcDistance > caDistance) &&
                 (abDistance + caDistance > bcDistance) &&
                 (bcDistance + caDistance > abDistance)) {
-
-            double area = (abDistance + bcDistance + caDistance) / 2;
-            return area;
+            return true;
+        } else {
+            throw new Exception("Triangle doesn't exist");
         }
-        return -1;
+    }
+
+    /**
+     * Find area.
+     */
+
+    public double area() {
+        double area = (abDistance + bcDistance + caDistance) / 2;
+        return area;
     }
 }
