@@ -1,3 +1,5 @@
+package ru.skilanov.triangle;
+
 /**
  * This class calculate distance between two points.
  */

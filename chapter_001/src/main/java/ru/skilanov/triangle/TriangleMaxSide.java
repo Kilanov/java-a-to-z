@@ -1,17 +1,13 @@
+package ru.skilanov.triangle;
+
+import java.util.Arrays;
+
 /**
  * Find max side of the triangle.
  */
 public class TriangleMaxSide {
-    public double max(double first, double second, double third){
-        double result = 0;
-
-        if (first > second && first > third){
-            result = first;
-        } else if (second > first && second > third){
-            result = second;
-        } else if (third > first && third > second){
-            result = third;
-        }
-        return result;
+    public double max(double... nums) {
+        Arrays.sort(nums);
+        return nums[nums.length - 1];
     }
 }
