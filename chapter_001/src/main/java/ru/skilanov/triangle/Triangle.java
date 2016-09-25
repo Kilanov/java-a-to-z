@@ -5,25 +5,15 @@ package ru.skilanov.triangle;
  */
 public class Triangle {
     /**
-     * @param first point a  double.
-     * @param second point b double.
-     * @param third point c double.
-     * @param fourth side abDistance double.
-     * @param fifth side bcDistance double.
-     * @param sixth side caDistance double.
+     * @param first side abDistance double.
+     * @param second side bcDistance double.
+     * @param third side caDistance double.
      */
-
-    public Point a;
-    public Point b;
-    public Point c;
     double abDistance;
     double bcDistance;
     double caDistance;
 
     public Triangle(Point a, Point b, Point c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
         abDistance = a.distanceTo(b);
         bcDistance = b.distanceTo(c);
         caDistance = c.distanceTo(a);
@@ -32,7 +22,6 @@ public class Triangle {
     /**
      * Checked is it possible to create triangle.
      */
-
     public boolean exists() throws Exception {
         if ((abDistance + bcDistance > caDistance) &&
                 (abDistance + caDistance > bcDistance) &&
@@ -46,9 +35,7 @@ public class Triangle {
     /**
      * Find area.
      */
-
     public double area() {
-        double area = (abDistance + bcDistance + caDistance) / 2;
-        return area;
+        return (abDistance + bcDistance + caDistance) / 2;
     }
 }

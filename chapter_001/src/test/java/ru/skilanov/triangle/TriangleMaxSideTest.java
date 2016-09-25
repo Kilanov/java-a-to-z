@@ -11,4 +11,18 @@ public class TriangleMaxSideTest {
         double maximum = triangleMaxSide.max(1.0, 2.0, 3.0);
         assertThat(maximum, is(3.0));
     }
+
+    @Test
+    public void whenSetSameNumsThenMaximumReturnIt() {
+        TriangleMaxSide triangleMaxSide = new TriangleMaxSide();
+        double maximum = triangleMaxSide.max(1.0, 1.0, 1.0);
+        assertThat(maximum, is(1.0));
+    }
+
+    @Test
+    public void whenSetMinusNumsThenMaximumReturn() {
+        TriangleMaxSide triangleMaxSide = new TriangleMaxSide();
+        double maximum = triangleMaxSide.max(-1.0, -2.0, -5.0);
+        assertThat(maximum, is(-1.0));
+    }
 }

@@ -7,7 +7,12 @@ import java.util.Arrays;
  */
 public class TriangleMaxSide {
     public double max(double... nums) {
-        Arrays.sort(nums);
-        return nums[nums.length - 1];
+        double maxValue = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > maxValue) {
+                maxValue = nums[i];
+            }
+        }
+        return maxValue;
     }
 }
