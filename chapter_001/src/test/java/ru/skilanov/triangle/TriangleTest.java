@@ -9,7 +9,7 @@ public class TriangleTest {
     public void whenSetThreeDifferentPointsThenAreaReturn() {
         Triangle triangle = new Triangle(new Point(2, 1), new Point(3, 2), new Point(4, 3));
         double area = triangle.area();
-        assertThat(area, is(2.8284271247461903));
+        assertThat(area, is(closeTo(2,82)));
     }
 
     @Test
@@ -23,6 +23,12 @@ public class TriangleTest {
     public void whenSetThreeMinusPointsThenAreaNum() {
         Triangle triangle = new Triangle(new Point(-1, -2), new Point(-3, -4), new Point(-5, -6));
         double area = triangle.area();
-        assertThat(area, is(5.656854249492381));
+        assertThat(area, is(closeTo(5,65)));
+    }
+
+    @Test(expected = Exception.class)
+    public void whenSetWrongParametersInExistThenReturnException() throws Exception {
+        Triangle triangle = new Triangle(new Point(1, 1), new Point(2, 3), new Point(1, 1));
+        triangle.exists();
     }
 }
