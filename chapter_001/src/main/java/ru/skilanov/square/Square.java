@@ -30,10 +30,8 @@ public class Square {
      * Show result.
      */
     public void show(int start, int finish, int step) {
-        Square square = new Square(2, 3, 4);
-
-        for (int index = start; index <= finish; index+=step) {
-            System.out.println(square.calculate(index));
+        for (int index = start; index <= finish; index += step) {
+            System.out.println(calculate(index));
         }
     }
 }
