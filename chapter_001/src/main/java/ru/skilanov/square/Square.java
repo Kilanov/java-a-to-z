@@ -29,13 +29,12 @@ public class Square {
     /**
      * Show result.
      */
-    public void show() {
+    public void show(int start, int finish, int step) {
         Square square = new Square(2, 3, 4);
-        int x1 = 1;
-        int x2 = 2;
 
-        for (int index = x1; index <= x2; index++) {
+        for (int index = start; index <= finish; index+=step) {
             System.out.println(square.calculate(index));
         }
     }
 }
+
