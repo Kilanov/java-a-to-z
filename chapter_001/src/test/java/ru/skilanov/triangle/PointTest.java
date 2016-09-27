@@ -3,6 +3,7 @@ package ru.skilanov.triangle;
 
 import org.junit.Test;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.number.IsCloseTo.closeTo;
 import static org.junit.Assert.*;
 
 public class PointTest {
