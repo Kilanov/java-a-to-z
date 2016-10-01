@@ -10,7 +10,7 @@ public class TriangleTest {
     public void whenSetThreeDifferentPointsThenAreaReturn() {
         Triangle triangle = new Triangle(new Point(2, 1), new Point(3, 2), new Point(4, 3));
         double area = triangle.area();
-        assertThat(area, is(closeTo(2,82)));
+        assertThat(area, is(closeTo(2.82, 0.01)));
     }
 
     @Test
@@ -24,7 +24,7 @@ public class TriangleTest {
     public void whenSetThreeMinusPointsThenAreaNum() {
         Triangle triangle = new Triangle(new Point(-1, -2), new Point(-3, -4), new Point(-5, -6));
         double area = triangle.area();
-        assertThat(area, is(closeTo(5,65)));
+        assertThat(area, is(closeTo(5.65, 0.01)));
     }
 
     @Test(expected = Exception.class)

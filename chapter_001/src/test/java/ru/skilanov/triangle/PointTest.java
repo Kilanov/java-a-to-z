@@ -20,7 +20,7 @@ public class PointTest {
         Point point1 = new Point(2, 2);
         Point point2 = new Point(3, 3);
         double distance = point1.distanceTo(point2);
-        assertThat(distance, is(closeTo(1,41)));
+        assertThat(distance, is(closeTo(1.41, 0.01)));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class PointTest {
         Point point1 = new Point(-1, -2);
         Point point2 = new Point(1, 2);
         double distance = point1.distanceTo(point2);
-        assertThat(distance, is(closeTo(4,47)));
+        assertThat(distance, is(closeTo(4.47, 0.01)));
     }
 
     @Test
