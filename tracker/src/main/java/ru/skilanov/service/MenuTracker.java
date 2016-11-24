@@ -5,7 +5,7 @@ import ru.skilanov.models.Item;
 public class MenuTracker {
     private Input input;
     private Tracker tracker;
-    private UserAction[] actions = new UserAction[8];
+    private UserAction[] actions = new UserAction[7];
 
     public MenuTracker(Input input, Tracker tracker) {
         this.input = input;
