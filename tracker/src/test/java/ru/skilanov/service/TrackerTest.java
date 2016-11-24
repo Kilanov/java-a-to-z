@@ -65,7 +65,7 @@ public class TrackerTest {
 
         Item find = tracker.findByName("User");
 
-        Assert.assertTrue(find == item);
+        assertThat(find, is(item));
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TrackerTest {
 
         Item find = tracker.findById(id);
 
-        Assert.assertTrue(find == item);
+        assertThat(find, is(item));
     }
 
     @Test
