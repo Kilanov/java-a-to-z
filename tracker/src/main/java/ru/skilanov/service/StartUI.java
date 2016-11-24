@@ -20,28 +20,21 @@ public class StartUI {
     }
 
     public void init() {
-        tracker.add(new Item("name first ", "first desc"));
-        tracker.add(new Item("name second ", "second desc"));
-        tracker.add(new Item("name third ", "third desc"));
         menu();
         boolean exit = false;
         int menuItem = Integer.parseInt(input.ask("Please, enter the command: "));
         while (!exit) {
             if (menuItem == 1) {
                 showAllItems();
-		break;
             } else if (menuItem == 2) {
                 Item item = addItem();
                 tracker.add(item);
-		break;
             } else if (menuItem == 3) {
                 Item item = editItem();
                 tracker.edit(item);
-                break;
             } else if (menuItem == 4) {
                 Item item = deleteItem();
                 tracker.delete(item);
-                break;
             } else if (menuItem == 5) {
                 Item item = addComment();
                 String comment = createComment();
@@ -50,6 +43,8 @@ public class StartUI {
                 Item item = findById();
             } else if (menuItem == 7) {
                 Item item = findByName();
+            } else if (menuItem == 8) {
+                exit = true;
             }
         }
     }
@@ -63,7 +58,8 @@ public class StartUI {
                 "4. Please enter 4 to delete an item" + "\n" +
                 "5. Please enter 5 to add a comment" + "\n" +
                 "6. Please enter 6 to find item by id" + "\n" +
-                "7. Please enter 7 to find item by name");
+                "7. Please enter 7 to find item by name" + "\n" +
+                "8. Please enter 8 to exit");
     }
 
     public void showAllItems() {
