@@ -1,22 +1,43 @@
 package ru.skilanov.service;
 
-import ru.skilanov.models.Item;
-import java.util.Scanner;
-
+/**
+ * This class starts our application.
+ */
 public class StartUI {
+    /**
+     * Input param.
+     */
     private Input input;
+    /**
+     * Tracker param.
+     */
+    private Tracker tracker;
 
-    public StartUI(Input input) {
+    /**
+     * Default constructor.
+     * @param input Input
+     * @param tracker Tracker
+     */
+    public StartUI(Input input, Tracker tracker) {
         this.input = input;
+        this.tracker = tracker;
     }
 
+    /**
+     * main method of the our application.
+     *
+     * @param args String[]
+     */
     public static void main(String[] args) {
+        Tracker tracker = new Tracker();
         Input input = new ConsoleInput();
-        new StartUI(input).init();
+        new StartUI(input, tracker).init();
     }
 
+    /**
+     * This method starts our menu.
+     */
     public void init() {
-        Tracker tracker = new Tracker();
         MenuTracker menuTracker = new MenuTracker(this.input, tracker);
         menuTracker.fillActions();
         do {

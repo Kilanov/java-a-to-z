@@ -1,7 +1,7 @@
 package ru.skilanov;
 
-import ru.skilanov.models.*;
-import ru.skilanov.service.*;
+import ru.skilanov.models.Item;
+import ru.skilanov.service.Tracker;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -10,7 +10,13 @@ import java.util.Arrays;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * This class tests Tracker class.
+ */
 public class TrackerTest {
+    /**
+     * Test of add method.
+     */
     @Test
     public void whenSetTaskInAddThenReturnAddedTask() {
         Tracker tracker = new Tracker();
@@ -18,6 +24,9 @@ public class TrackerTest {
         Assert.assertEquals(item, tracker.add(item));
     }
 
+    /**
+     * Test of the get all method.
+     */
     @Test
     public void whenSetTaskInGetAllThenReturnTheSame() {
         Tracker tracker = new Tracker();
@@ -29,6 +38,9 @@ public class TrackerTest {
         assertThat(result, is(items));
     }
 
+    /**
+     * Test of the delete method.
+     */
     @Test
     public void whenSetTaskInDeleteThenReturnDeletedTask() {
         Tracker tracker = new Tracker();
@@ -41,6 +53,9 @@ public class TrackerTest {
         Assert.assertNotEquals(result, resultAfterDeleting);
     }
 
+    /**
+     * Test of the edit method.
+     */
     @Test
     public void whenSetTaskInEditTheReturnEditedTask() {
         Tracker tracker = new Tracker();
@@ -56,7 +71,9 @@ public class TrackerTest {
         Assert.assertNotEquals(resultBefore, resultAfter);
     }
 
-
+    /**
+     * Test of the find by name method.
+     */
     @Test
     public void whenSetNameInFindByNameTheReturnRightName() {
         Tracker tracker = new Tracker();
@@ -68,6 +85,9 @@ public class TrackerTest {
         assertThat(find, is(item));
     }
 
+    /**
+     * Test of the find by id method.
+     */
     @Test
     public void whenSetIdInFindByIdThenReturnRightId() {
         Tracker tracker = new Tracker();
@@ -80,6 +100,9 @@ public class TrackerTest {
         assertThat(find, is(item));
     }
 
+    /**
+     * Test of the add comment method.
+     */
     @Test
     public void whenSetCommentInAddCommentThenReturnAddedComment() {
         Tracker tracker = new Tracker();
