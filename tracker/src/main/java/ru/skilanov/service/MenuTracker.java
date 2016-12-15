@@ -37,7 +37,7 @@ public class MenuTracker {
     /**
      * This is constant param.
      */
-    public static final int ARRAY_SIZE = 8;
+    public static final int ARRAY_SIZE = 7;
     /**
      * Input param.
      */
@@ -66,13 +66,13 @@ public class MenuTracker {
      * This method fill menu points.
      */
     public void fillActions() {
-        this.actions[FIRST_MENU_POINT] = new AddItem();
-        this.actions[SECOND_MENU_POINT] = new ShowItems();
-        this.actions[THIRD_MENU_POINT] = new EditItem();
-        this.actions[FOURTH_MENU_POINT] = new DeleteItem();
-        this.actions[FIFTH_MENU_POINT] = new FindItemById();
-        this.actions[SIXTH_MENU_POINT] = new FindItemByName();
-        this.actions[SEVENTH_MENU_POINT] = new AddComment();
+        this.actions[FIRST_MENU_POINT] = new AddItem("Add the Item");
+        this.actions[SECOND_MENU_POINT] = new ShowItems("Show the Item");
+        this.actions[THIRD_MENU_POINT] = new EditItem("Edit the item");
+        this.actions[FOURTH_MENU_POINT] = new DeleteItem("Delete the item");
+        this.actions[FIFTH_MENU_POINT] = new FindItemById("Find item by the id");
+        this.actions[SIXTH_MENU_POINT] = new FindItemByName("Find id by the name");
+        this.actions[SEVENTH_MENU_POINT] = new AddComment("Add the comment");
     }
 
     /**
@@ -98,12 +98,21 @@ public class MenuTracker {
     /**
      * This class add an Item.
      */
-    private class AddItem implements UserAction {
+    private class AddItem extends BaseAction {
 
         /**
          * This is constant param.
          */
         public static final int NULL = 0;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        AddItem(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -125,25 +134,25 @@ public class MenuTracker {
             String itemDesc = input.ask("Enter item's description");
             tracker.add(new Item(itemName, itemDesc));
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Add the new Item");
-        }
     }
 
     /**
      * This class shows all Items.
      */
-    public class ShowItems implements UserAction {
+    public class ShowItems extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int ONE = 1;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public ShowItems(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -167,25 +176,25 @@ public class MenuTracker {
                 }
             }
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s  %s", this.key(), "Show all items");
-        }
     }
 
     /**
      * This class edit Items.
      */
-    public class EditItem implements UserAction {
+    public class EditItem extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int TWO = 2;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public EditItem(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -210,25 +219,25 @@ public class MenuTracker {
             item.setId(id);
             tracker.edit(item);
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Edit item");
-        }
     }
 
     /**
      * This class delete Items.
      */
-    public class DeleteItem implements UserAction {
+    public class DeleteItem extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int THREE = 3;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public DeleteItem(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -251,25 +260,25 @@ public class MenuTracker {
             item.setId(id);
             tracker.delete(item);
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Delete item");
-        }
     }
 
     /**
      * This class finds Items by id.
      */
-    public class FindItemById implements UserAction {
+    public class FindItemById extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int FOUR = 4;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public FindItemById(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -293,25 +302,25 @@ public class MenuTracker {
                 System.out.println(String.format("%s %s %s", this.key(), item.getName(), item.getDescription()));
             }
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Find item by id");
-        }
     }
 
     /**
      * This class finds Items by name.
      */
-    public class FindItemByName implements UserAction {
+    public class FindItemByName extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int FIVE = 5;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public FindItemByName(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -335,25 +344,25 @@ public class MenuTracker {
                 System.out.println(String.format("%s %s %s", this.key(), item.getName(), item.getDescription()));
             }
         }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Find item by name");
-        }
     }
 
     /**
      * This class adds comments.
      */
-    public class AddComment implements UserAction {
+    public class AddComment extends BaseAction {
         /**
          * This is constant param.
          */
         public static final int SIX = 6;
+
+        /**
+         * This is abstract class constructor.
+         *
+         * @param name String
+         */
+        public AddComment(String name) {
+            super(name);
+        }
 
         /**
          * This method makes position of menu point.
@@ -370,22 +379,13 @@ public class MenuTracker {
          * @param input   Input
          * @param tracker Tracker
          */
-	public void execute(Input input, Tracker tracker) {
+        public void execute(Input input, Tracker tracker) {
             String id = input.ask("Please enter id: ");
             String comment = input.ask("Please enter comment: ");
             Item item = new Item();
             item.setId(id);
             tracker.addComment(item, comment);
 
-        }
-
-        /**
-         * This method shows some info for user.
-         *
-         * @return users text
-         */
-        public String info() {
-            return String.format("%s %s", this.key(), "Add comment");
         }
     }
 }
