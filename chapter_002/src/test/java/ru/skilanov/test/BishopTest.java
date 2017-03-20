@@ -1,9 +1,9 @@
 package ru.skilanov.test;
 
-import ru.skilanov.model.Bishop;
-import ru.skilanov.model.Cell;
-import ru.skilanov.exceptions.ImpossibleMoveException;
-import ru.skilanov.model.Figure;
+import ru.skilanov.testtask.model.Bishop;
+import ru.skilanov.testtask.model.Cell;
+import ru.skilanov.testtask.exceptions.ImpossibleMoveException;
+import ru.skilanov.testtask.model.Figure;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;

@@ -1,4 +1,4 @@
 /**
  * This package contains models.
  */
-package ru.skilanov.model;
+package ru.skilanov.testTask.model;

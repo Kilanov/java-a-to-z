@@ -1,4 +1,4 @@
-package ru.skilanov.exceptions;
+package ru.skilanov.testtask.exceptions;
 
 /**
  * Figure not found exception.

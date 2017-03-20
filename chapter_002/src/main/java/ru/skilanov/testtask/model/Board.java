@@ -1,8 +1,8 @@
-package ru.skilanov.model;
+package ru.skilanov.testtask.model;
 
-import ru.skilanov.exceptions.ImpossibleMoveException;
-import ru.skilanov.exceptions.FigureNotFoundException;
-import ru.skilanov.exceptions.OccupiedWayException;
+import ru.skilanov.testtask.exceptions.ImpossibleMoveException;
+import ru.skilanov.testtask.exceptions.FigureNotFoundException;
+import ru.skilanov.testtask.exceptions.OccupiedWayException;
 
 /**
  * This class describes chess board.

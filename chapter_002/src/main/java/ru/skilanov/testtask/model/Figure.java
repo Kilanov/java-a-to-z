@@ -1,6 +1,6 @@
-package ru.skilanov.model;
+package ru.skilanov.testtask.model;
 
-import ru.skilanov.exceptions.ImpossibleMoveException;
+import ru.skilanov.testtask.exceptions.ImpossibleMoveException;
 
 /**
  * This is abstract class of the figures model.

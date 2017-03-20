@@ -1,4 +1,4 @@
-package ru.skilanov.model;
+package ru.skilanov.testtask.model;
 
 /**
  * This class is model of the cell.

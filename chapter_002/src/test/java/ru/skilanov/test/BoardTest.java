@@ -1,11 +1,11 @@
 package ru.skilanov.test;
 
-import ru.skilanov.model.Bishop;
-import ru.skilanov.model.Board;
-import ru.skilanov.model.Cell;
-import ru.skilanov.exceptions.FigureNotFoundException;
-import ru.skilanov.exceptions.ImpossibleMoveException;
-import ru.skilanov.exceptions.OccupiedWayException;
+import ru.skilanov.testtask.model.Bishop;
+import ru.skilanov.testtask.model.Board;
+import ru.skilanov.testtask.model.Cell;
+import ru.skilanov.testtask.exceptions.FigureNotFoundException;
+import ru.skilanov.testtask.exceptions.ImpossibleMoveException;
+import ru.skilanov.testtask.exceptions.OccupiedWayException;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
