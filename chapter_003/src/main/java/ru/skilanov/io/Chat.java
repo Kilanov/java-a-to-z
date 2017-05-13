@@ -3,11 +3,11 @@ package ru.skilanov.io;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.PrintWriter;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -19,31 +19,25 @@ public class Chat {
     /**
      * This is start method.
      *
-     * @throws IOException exception
      */
     public void startIO() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
-            String str = reader.readLine();
-            boolean exit = true;
             menu();
-            label:
-            do {
-                switch (str) {
-                    case "????":
-                        chatIO();
-                        break label;
-                    case "??????????":
-                        chatIO();
-                        botRandom();
-                        break label;
-                    case "?????????":
-                        break label;
-                    default:
-                        chatIO();
-                        botRandom();
-                        break;
+
+            while (true) {
+                String str = reader.readLine();
+                if (str.equals("стоп")) {
+                    chatIO();
+                } else if ((str.equals("продолжить"))) {
+                    chatIO();
+                    botRandom();
+                } else if (str.equals("закончить")) {
+                    break;
                 }
-            } while (!exit);
+                chatIO();
+                botRandom();
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,59 +51,55 @@ public class Chat {
                 +
                 "\n"
                 +
-                "1. Please enter '����' to stop bot"
+                "1. Please enter 'стоп' to stop bot"
                 + "\n"
                 +
-                "2. Please enter '����������' to start bot"
+                "2. Please enter 'продолжить' to start bot"
                 + "\n"
                 +
-                "3. Please enter '���������' to exit"
+                "3. Please enter 'закончить' to exit"
                 + "\n");
     }
 
     /**
      * This is chat input method.
+     * @throws IOException exception
      */
-    public void chatIO() {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             FileOutputStream outputStream = new FileOutputStream("test.txt", true);
-             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-             PrintWriter printWriter = new PrintWriter(outputStreamWriter)) {
-            String str = reader.readLine();
-            printWriter.write(str);
-            printWriter.write(System.lineSeparator());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void chatIO() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        FileOutputStream outputStream = new FileOutputStream("test.txt", true);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+        PrintWriter printWriter = new PrintWriter(outputStreamWriter);
+        String str = reader.readLine();
+        printWriter.write(str);
+        printWriter.write(System.lineSeparator());
     }
+
 
     /**
      * This is chat output method.
+     * @throws IOException exception
      */
-    public void botRandom() {
+    public void botRandom() throws IOException {
         ArrayList<String> list = new ArrayList<>();
-        try (FileInputStream inputStream = new FileInputStream("test2.txt");
-             InputStreamReader streamReader = new InputStreamReader(inputStream);
-             BufferedReader reader = new BufferedReader(streamReader);
-             FileOutputStream outputStream = new FileOutputStream("test.txt", true);
-             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
-             PrintWriter printWriter = new PrintWriter(outputStreamWriter)) {
+        FileInputStream inputStream = new FileInputStream("test2.txt");
+        InputStreamReader streamReader = new InputStreamReader(inputStream);
+        BufferedReader reader = new BufferedReader(streamReader);
+        FileOutputStream outputStream = new FileOutputStream("test.txt", true);
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
+        PrintWriter printWriter = new PrintWriter(outputStreamWriter);
 
-            String lineTemp = reader.readLine();
-            while (lineTemp != null) {
-                list.add(lineTemp);
-                lineTemp = reader.readLine();
-                Collections.shuffle(list);
-            }
-
-            int itemIndex = (int) (Math.random() * list.size());
-            System.out.println(list.get(itemIndex));
-            printWriter.write(list.get(itemIndex));
-            printWriter.write(System.lineSeparator());
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        String lineTemp = reader.readLine();
+        while (lineTemp != null) {
+            list.add(lineTemp);
+            lineTemp = reader.readLine();
+            Collections.shuffle(list);
         }
+
+        int itemIndex = (int) (Math.random() * list.size());
+        System.out.println(list.get(itemIndex));
+        printWriter.write(list.get(itemIndex));
+        printWriter.write(System.lineSeparator());
     }
 }
 
