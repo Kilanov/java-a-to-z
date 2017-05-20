@@ -17,8 +17,20 @@ import java.util.Collections;
 public class Chat {
 
     /**
+     * This is constant variable for stop.
+     */
+    public static final String STOP = "стоп";
+    /**
+     * This is constant variable for continue.
+     */
+    public static final String CONTINUE = "продолжить";
+    /**
+     * This is constant variable for exit.
+     */
+    public static final String EXIT = "закончить";
+
+    /**
      * This is start method.
-     *
      */
     public void startIO() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
@@ -26,12 +38,12 @@ public class Chat {
 
             while (true) {
                 String str = reader.readLine();
-                if (str.equals("стоп")) {
+                if (STOP.equals(str)) {
                     chatIO();
-                } else if ((str.equals("продолжить"))) {
+                } else if ((CONTINUE.equals(str))) {
                     chatIO();
                     botRandom();
-                } else if (str.equals("закончить")) {
+                } else if (EXIT.equals(str)) {
                     break;
                 }
                 chatIO();
@@ -63,6 +75,7 @@ public class Chat {
 
     /**
      * This is chat input method.
+     *
      * @throws IOException exception
      */
     public void chatIO() throws IOException {
@@ -78,6 +91,7 @@ public class Chat {
 
     /**
      * This is chat output method.
+     *
      * @throws IOException exception
      */
     public void botRandom() throws IOException {
