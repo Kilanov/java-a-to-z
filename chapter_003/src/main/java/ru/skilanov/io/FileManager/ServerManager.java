@@ -1,18 +1,10 @@
 package ru.skilanov.io.fileManager;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.File;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Properties;
-
 
 
 /**
@@ -22,8 +14,7 @@ public class ServerManager {
     /**
      * This is constant param.
      */
-    public static final String PROP = "C:\\projects\\java-a-to-z\\chapter_003\\src\\main\\java\\ru\\"
-            + "skilanov\\io\\fileManager\\config.properties";
+    public static final String PROP = "src\\main\\java\\ru\\skilanov\\io\\fileManager\\resources\\config.properties";
     /**
      * This is constant param.
      */
@@ -100,28 +91,30 @@ public class ServerManager {
      * This is main method.
      *
      * @param args String[]
-     * @throws Exception exception
      */
-    public static void main(String[] args) throws Exception {
-        FileInputStream in = new FileInputStream(PROP);
-        Properties properties = new Properties();
-        properties.load(in);
-        String port = properties.getProperty(PORT);
-        Socket socket = new ServerSocket(Integer.parseInt(port)).accept();
+    public static void main(String[] args) {
+        try (FileInputStream in = new FileInputStream(PROP)) {
+            Properties properties = new Properties();
+            properties.load(in);
+            String port = properties.getProperty(PORT);
+            Socket socket = new ServerSocket(Integer.parseInt(port)).accept();
 
-        InputStream socketInputStream = socket.getInputStream();
-        OutputStream socketOutputStream = socket.getOutputStream();
+            InputStream socketInputStream = socket.getInputStream();
+            OutputStream socketOutputStream = socket.getOutputStream();
 
-        DataInputStream dataInputStream = new DataInputStream(socketInputStream);
-        DataOutputStream dataOutputStream = new DataOutputStream(socketOutputStream);
-        ServerManager server = new ServerManager(dataInputStream, dataOutputStream);
-        server.fillActions();
-        int key = NULL;
-        while (FOUR != key) {
-            server.show();
-            String str = dataInputStream.readUTF();
-            key = Integer.parseInt(str);
-            server.select(key);
+            DataInputStream dataInputStream = new DataInputStream(socketInputStream);
+            DataOutputStream dataOutputStream = new DataOutputStream(socketOutputStream);
+            ServerManager server = new ServerManager(dataInputStream, dataOutputStream);
+            server.fillActions();
+            int key = NULL;
+            while (FOUR != key) {
+                server.show();
+                String str = dataInputStream.readUTF();
+                key = Integer.parseInt(str);
+                server.select(key);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -189,8 +182,7 @@ public class ServerManager {
          */
         @Override
         public void execute() {
-            try {
-                FileInputStream in = new FileInputStream(PROP);
+            try (FileInputStream in = new FileInputStream(PROP)) {
                 Properties properties = new Properties();
                 properties.load(in);
                 String parentsDirectory = properties.getProperty(PARENTS_DIRECTORY);
@@ -235,9 +227,13 @@ public class ServerManager {
          */
         @Override
         public void execute() {
+            String str = null;
             try {
-                String str = in.readUTF();
-                FileInputStream in = new FileInputStream(PROP);
+                str = in.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileInputStream in = new FileInputStream(PROP)) {
                 Properties properties = new Properties();
                 properties.load(in);
                 String parentsDirectory = properties.getProperty(PARENTS_DIRECTORY);
@@ -283,9 +279,13 @@ public class ServerManager {
          */
         @Override
         public void execute() {
+            String str = null;
             try {
-                String str = in.readUTF();
-                FileInputStream in = new FileInputStream(PROP);
+                str = in.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileInputStream in = new FileInputStream(PROP)) {
                 Properties properties = new Properties();
                 properties.load(in);
                 String parentsDirectory = properties.getProperty(PARENTS_DIRECTORY);
@@ -337,11 +337,17 @@ public class ServerManager {
          */
         @Override
         public void execute() {
+            String fileName = null;
+            String newPath = null;
+            String newFileName = null;
             try {
-                String fileName = in.readUTF();
-                String newPath = in.readUTF();
-                String newFileName = in.readUTF();
-                FileInputStream in = new FileInputStream(PROP);
+                fileName = in.readUTF();
+                newPath = in.readUTF();
+                newFileName = in.readUTF();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try (FileInputStream in = new FileInputStream(PROP)) {
                 Properties properties = new Properties();
                 properties.load(in);
                 String parentsDirectory = properties.getProperty(PARENTS_DIRECTORY);

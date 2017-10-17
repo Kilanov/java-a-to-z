@@ -1,13 +1,6 @@
 package ru.skilanov.io.fileManager;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.Properties;
@@ -19,8 +12,7 @@ public class ClientManager {
     /**
      * This is constant param.
      */
-    public static final String PROP = "C:\\projects\\java-a-to-z\\chapter_003\\src\\main\\java\\ru\\"
-            + "skilanov\\io\\fileManager\\config.properties";
+    public static final String PROP = "src\\main\\java\\ru\\skilanov\\io\\fileManager\\resources\\config.properties";
     /**
      * This is constant param.
      */
@@ -107,47 +99,50 @@ public class ClientManager {
      * This is main method.
      *
      * @param args String[]
-     * @throws Exception exception
      */
-    public static void main(String[] args) throws Exception {
-        FileInputStream in = new FileInputStream(PROP);
-        Properties properties = new Properties();
-        properties.load(in);
-        String port = properties.getProperty(PORT);
-        String ipAddress = properties.getProperty(IP_ADDRESS);
+    public static void main(String[] args) {
+        try (FileInputStream in = new FileInputStream(PROP)) {
+            Properties properties = new Properties();
+            properties.load(in);
+            String port = properties.getProperty(PORT);
+            String ipAddress = properties.getProperty(IP_ADDRESS);
 
-        InetAddress inetAddress = InetAddress.getByName(ipAddress);
-        Socket socket = new Socket(inetAddress, Integer.parseInt(port));
+            InetAddress inetAddress = InetAddress.getByName(ipAddress);
+            Socket socket = new Socket(inetAddress, Integer.parseInt(port));
 
-        InputStream socketInputStream = socket.getInputStream();
-        OutputStream socketOutputStream = socket.getOutputStream();
+            InputStream socketInputStream = socket.getInputStream();
+            OutputStream socketOutputStream = socket.getOutputStream();
 
-        DataInputStream inputStream = new DataInputStream(socketInputStream);
-        DataOutputStream outputStream = new DataOutputStream(socketOutputStream);
+            DataInputStream inputStream = new DataInputStream(socketInputStream);
+            DataOutputStream outputStream = new DataOutputStream(socketOutputStream);
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        ClientManager clientManager = new ClientManager(inputStream, outputStream, reader);
-        String str = null;
+            ClientManager clientManager = new ClientManager(inputStream, outputStream, reader);
+            String str = null;
 
-        clientManager.fillActions();
-        do {
-            clientManager.show();
-            System.out.println(MENU_POINT);
-            str = reader.readLine();
-            if (str.equals(EXIT)) {
-                break;
-            } else {
-                outputStream.writeUTF(str);
-                int key = Integer.parseInt(str);
-                clientManager.select(key);
-            }
-        } while (true);
+            clientManager.fillActions();
+            do {
+                clientManager.show();
+                System.out.println(MENU_POINT);
+                str = reader.readLine();
+                if (str.equals(EXIT)) {
+                    break;
+                } else {
+                    outputStream.writeUTF(str);
+                    int key = Integer.parseInt(str);
+                    clientManager.select(key);
+                }
+            } while (true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
      * This method fill menu points.
      */
+
     public void fillActions() {
         this.actions[NULL] = new ParentsDirectory(PLEASE_CHOOSE_FOR_SHOW_DIRECTORY);
         this.actions[ONE] = new SubDirectory(PLEASE_INPUT_SUB_DIR);
