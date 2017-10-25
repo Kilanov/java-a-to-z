@@ -20,9 +20,9 @@ public class CollectionsTimer {
      */
     public static void main(String[] args) {
         CollectionsTimer timer = new CollectionsTimer();
-        List<String> linkedList = new LinkedList<String>();
-        List<String> arrayList = new ArrayList<String>();
-        Set<String> treeSet = new TreeSet<String>();
+        List<String> linkedList = new LinkedList<>();
+        List<String> arrayList = new ArrayList<>();
+        Set<String> treeSet = new TreeSet<>();
 
         System.out.println("LinkedList add time is: " + String.format("%s  %s", timer.add(linkedList, 20000), "ms"));
         System.out.println("ArrayList add time is: " + String.format("%s  %s", timer.add(arrayList, 20000), "ms"));
