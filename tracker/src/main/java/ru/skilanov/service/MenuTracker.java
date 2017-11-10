@@ -2,6 +2,9 @@ package ru.skilanov.service;
 
 import ru.skilanov.models.Item;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class gives users choice of a menu points for creating operations with Items.
  */
@@ -35,10 +38,6 @@ public class MenuTracker {
      */
     public static final int SEVENTH_MENU_POINT = 6;
     /**
-     * This is constant param.
-     */
-    public static final int ARRAY_SIZE = 7;
-    /**
      * Input param.
      */
     private Input input;
@@ -49,7 +48,7 @@ public class MenuTracker {
     /**
      * UserAction array for all menu points.
      */
-    private UserAction[] actions = new UserAction[ARRAY_SIZE];
+    private List<UserAction> actions = new ArrayList<>();
 
     /**
      * This constructor gets class params.
@@ -66,13 +65,13 @@ public class MenuTracker {
      * This method fill menu points.
      */
     public void fillActions() {
-        this.actions[FIRST_MENU_POINT] = new AddItem("Add the Item");
-        this.actions[SECOND_MENU_POINT] = new ShowItems("Show the Item");
-        this.actions[THIRD_MENU_POINT] = new EditItem("Edit the item");
-        this.actions[FOURTH_MENU_POINT] = new DeleteItem("Delete the item");
-        this.actions[FIFTH_MENU_POINT] = new FindItemById("Find item by the id");
-        this.actions[SIXTH_MENU_POINT] = new FindItemByName("Find id by the name");
-        this.actions[SEVENTH_MENU_POINT] = new AddComment("Add the comment");
+        actions.add(FIRST_MENU_POINT, new AddItem("Add the Item"));
+        actions.add(SECOND_MENU_POINT, new ShowItems("Show the Item"));
+        actions.add(THIRD_MENU_POINT, new EditItem("Edit the item"));
+        actions.add(FOURTH_MENU_POINT, new DeleteItem("Delete the item"));
+        actions.add(FIFTH_MENU_POINT, new FindItemById("Find item by the id"));
+        actions.add(SIXTH_MENU_POINT, new FindItemByName("Find id by the name"));
+        actions.add(SEVENTH_MENU_POINT, new AddComment("Add the comment"));
     }
 
     /**
@@ -92,7 +91,7 @@ public class MenuTracker {
      * @param key int
      */
     public void select(int key) {
-        this.actions[key].execute(this.input, this.tracker);
+        this.actions.get(key).execute(this.input, this.tracker);
     }
 
     /**

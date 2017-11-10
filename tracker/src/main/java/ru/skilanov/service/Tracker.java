@@ -1,16 +1,15 @@
 package ru.skilanov.service;
 
 import ru.skilanov.models.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * This class could make some operations with Item.
  */
 public class Tracker {
-    /**
-     * Constant param of the array size.
-     */
-    public static final int ARRAY_SIZE = 10;
     /**
      * Constant param.
      */
@@ -22,7 +21,7 @@ public class Tracker {
     /**
      * Items array.
      */
-    private Item[] items = new Item[ARRAY_SIZE];
+    private List<Item> items = new ArrayList<>();
     /**
      * position int.
      */
@@ -36,7 +35,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(generateId());
-        this.items[position++] = item;
+        items.add(position++, item);
         return item;
     }
 
@@ -73,7 +72,7 @@ public class Tracker {
     public Item[] getAll() {
         Item[] result = new Item[position];
         for (int index = 0; index != position; index++) {
-            result[index] = this.items[index];
+            result[index] = this.items.get(index);
         }
         return result;
     }
@@ -85,8 +84,8 @@ public class Tracker {
      */
     public void delete(Item item) {
         for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(item.getId())) {
-                items[index] = null;
+            if (items.get(index).getId().equals(item.getId())) {
+                items.set(index, null);
                 break;
             }
         }
@@ -99,8 +98,8 @@ public class Tracker {
      */
     public void edit(Item item) {
         for (int index = 0; index < position; index++) {
-            if (item != null && items[index].getId().equals(item.getId())) {
-                items[index] = item;
+            if (item != null && items.get(index).getId().equals(item.getId())) {
+                items.set(index, item);
                 break;
             }
         }
