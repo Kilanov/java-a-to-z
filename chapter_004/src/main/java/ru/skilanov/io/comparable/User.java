@@ -61,7 +61,7 @@ public class User implements Comparable<User> {
     }
 
     /**
-     * This is comparator method.
+     * This is comparetor method.
      *
      * @param o User
      * @return user
