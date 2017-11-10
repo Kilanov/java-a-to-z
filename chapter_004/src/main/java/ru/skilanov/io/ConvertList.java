@@ -50,4 +50,22 @@ public class ConvertList {
         }
         return array;
     }
+
+    /**
+     * This method converts List<int[]> to List <Integer>.
+     *
+     * @param list int[]
+     * @return Integer
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> convertedList = new ArrayList<>();
+
+        for (int[] aList : list) {
+            for (int num : aList) {
+                convertedList.add(num);
+            }
+        }
+        return convertedList;
+    }
 }
+
