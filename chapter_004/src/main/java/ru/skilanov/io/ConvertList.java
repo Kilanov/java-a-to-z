@@ -8,7 +8,6 @@ import java.util.List;
  * This class converts array to list and list to array.
  */
 public class ConvertList {
-
     /**
      * This method converts array to list.
      *
@@ -38,6 +37,9 @@ public class ConvertList {
         Iterator<Integer> iterator = list.iterator();
         int columns = list.size() / rows + (list.size() % rows == 0 ? 0 : 1);
 
+        if (list.contains(null)) {
+            System.out.println("Exception, list contains null");
+        }
         int[][] array = new int[rows][columns];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
@@ -48,6 +50,7 @@ public class ConvertList {
                 }
             }
         }
+
         return array;
     }
 
