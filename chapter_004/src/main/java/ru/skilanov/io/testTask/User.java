@@ -1,8 +1,9 @@
-package ru.skilanov.io.testTask;
+package ru.skilanov.io.testtask;
 
 /**
  * Created by Semen on 13.11.2017.
  */
+
 public class User {
     /**
      * @param name String
@@ -31,9 +32,14 @@ public class User {
      */
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", passport=" + passport +
+        return "User{"
+                +
+                "name='"
+                + name
+                + '\''
+                + ", passport="
+                + passport
+                +
                 '}';
     }
 
@@ -45,12 +51,18 @@ public class User {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         User user = (User) o;
 
-        if (passport != user.passport) return false;
+        if (passport != user.passport) {
+            return false;
+        }
         return name != null ? name.equals(user.name) : user.name == null;
 
     }

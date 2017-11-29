@@ -1,4 +1,4 @@
-package ru.skilanov.io.testTask;
+package ru.skilanov.io.testtask;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +13,7 @@ import static org.hamcrest.core.Is.is;
 /**
  * This is test class for Bank.
  */
+
 public class BankTest {
 
     /**
@@ -85,10 +86,10 @@ public class BankTest {
         Map<User, List<Account>> userList = new HashMap<>();
         Bank bank = new Bank(userList);
         User user = new User("name", 1234);
-        Account accountRur = new Account(11, 1111);
-        bank.addAccountToUser(user, accountRur);
+        Account accountRub = new Account(11, 1111);
+        bank.addAccountToUser(user, accountRub);
         List<Account> list = new ArrayList<>();
-        list.add(accountRur);
+        list.add(accountRub);
         List<Account> result = bank.getUserAccounts(user);
         Assert.assertTrue(result.equals(list));
     }
@@ -100,17 +101,17 @@ public class BankTest {
     public void whenTransferMoneyThenReturnResult() {
         Map<User, List<Account>> userList = new HashMap<>();
         Bank bank = new Bank(userList);
-        User Alexander = new User("Alexander", 1234);
-        User Anton = new User("Anton", 5678);
+        User alex = new User("alex", 1234);
+        User anton = new User("anton", 5678);
         Account accountAlexander = new Account(11, 111);
         Account accountAnton = new Account(0, 222);
-        bank.addUser(Alexander);
-        bank.addUser(Anton);
+        bank.addUser(alex);
+        bank.addUser(anton);
 
-        bank.addAccountToUser(Alexander, accountAlexander);
-        bank.addAccountToUser(Anton, accountAnton);
+        bank.addAccountToUser(alex, accountAlexander);
+        bank.addAccountToUser(anton, accountAnton);
 
-        bank.transferMoney(Alexander, accountAlexander, Anton, accountAnton, 10);
+        bank.transferMoney(alex, accountAlexander, anton, accountAnton, 10);
 
         Assert.assertThat(accountAlexander.getValue(), is(1.0));
     }
