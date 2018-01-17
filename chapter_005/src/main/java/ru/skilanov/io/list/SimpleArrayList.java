@@ -13,6 +13,10 @@ import java.util.NoSuchElementException;
 public class SimpleArrayList<E> implements SimpleContainer<E> {
 
     /**
+     * Constant variable
+     */
+    public static final int INITIAL_CAPACITY = 10;
+    /**
      * Array
      */
     Object[] container;
@@ -28,10 +32,14 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
     /**
      * Constructor.
      *
-     * @param size int
+     * @param initialCapacity int
      */
-    public SimpleArrayList(int size) {
-        this.container = new Object[]{size};
+    public SimpleArrayList(int initialCapacity) {
+        this.container = new Object[initialCapacity];
+    }
+
+    public SimpleArrayList() {
+        this(INITIAL_CAPACITY);
     }
 
     /**
@@ -41,6 +49,7 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
      */
     @Override
     public void add(E value) {
+        modCount++;
         increaseSize(size + 1);
         container[size++] = value;
     }
@@ -72,7 +81,6 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
      * @param size int
      */
     public void increaseSize(int size) {
-        modCount++;
         int arraySize = container.length;
         if (size > arraySize) {
             int newSize = arraySize * 2;
@@ -111,7 +119,7 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
         @Override
         public E next() {
             checkForMod();
-            if (index >= size) {
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             return (E) container[index++];
