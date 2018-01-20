@@ -18,7 +18,7 @@ public class SimpleArrayListTest {
      */
     @Test
     public void whenWeAddValueAndGetItThenReturnRightResult() {
-        SimpleArrayList list = new SimpleArrayList(10);
+        SimpleArrayList list = new SimpleArrayList();
         list.add("1");
         list.add("2");
 
@@ -31,7 +31,7 @@ public class SimpleArrayListTest {
      */
     @Test
     public void whenWeAddMoreValuesThenInListItAutomaticallyIncrease() {
-        SimpleArrayList list = new SimpleArrayList(10);
+        SimpleArrayList list = new SimpleArrayList();
         list.add("1");
         list.add("1");
         list.add("1");
@@ -53,7 +53,7 @@ public class SimpleArrayListTest {
      */
     @Test
     public void whenWeIterateListThenReturnsRightsValues() {
-        SimpleArrayList list = new SimpleArrayList(10);
+        SimpleArrayList list = new SimpleArrayList();
         list.add("1");
         list.add("2");
         list.add("3");
@@ -72,7 +72,7 @@ public class SimpleArrayListTest {
      */
     @Test(expected = NoSuchElementException.class)
     public void whenWeIterateNotExistingValuesThenReturnException() {
-        SimpleArrayList list = new SimpleArrayList(10);
+        SimpleArrayList list = new SimpleArrayList();
         list.add("1");
         list.add("2");
         list.add("3");
