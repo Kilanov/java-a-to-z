@@ -78,15 +78,15 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
      *
      * @param <E> Node
      */
-    private static class Node<E> {
+    public static class Node<E> {
         /**
          * E item variable
          */
-        private E item;
+        public E item;
         /**
          * Node next variable
          */
-        private Node<E> next;
+        public Node<E> next;
         /**
          * Node previous variable
          */
