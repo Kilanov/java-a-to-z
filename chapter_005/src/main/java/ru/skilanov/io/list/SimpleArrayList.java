@@ -19,11 +19,11 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
     /**
      * Array
      */
-    Object[] container;
+    public Object[] container;
     /**
      * Size variable
      */
-    int size = 0;
+    public int size = 0;
     /**
      * Modifications count variable
      */
@@ -86,6 +86,15 @@ public class SimpleArrayList<E> implements SimpleContainer<E> {
             int newSize = arraySize * 2;
             container = Arrays.copyOf(container, newSize);
         }
+    }
+
+    /**
+     * Size method.
+     *
+     * @return int
+     */
+    public int getSize() {
+        return size;
     }
 
     /**

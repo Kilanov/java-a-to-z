@@ -13,7 +13,7 @@ public class SimpleLinkedList<E> implements SimpleContainer<E> {
     /**
      * Node first variable
      */
-    private Node<E> first;
+    public Node<E> first;
     /**
      * Node last variable
      */

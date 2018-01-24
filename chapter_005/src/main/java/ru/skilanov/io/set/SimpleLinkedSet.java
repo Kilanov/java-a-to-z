@@ -1,13 +1,13 @@
 package ru.skilanov.io.set;
 
-import ru.skilanov.io.list.SimpleArrayList;
+import ru.skilanov.io.list.SimpleLinkedList;
 
 /**
- * Array set class.
+ * SimpleLinkedSet class.
  *
  * @param <E> E
  */
-public class SimpleArraySet<E> extends SimpleArrayList<E> {
+public class SimpleLinkedSet<E> extends SimpleLinkedList<E> {
     /**
      * Add method.
      *
@@ -21,27 +21,20 @@ public class SimpleArraySet<E> extends SimpleArrayList<E> {
     }
 
     /**
-     * Get size method.
-     *
-     * @return int
-     */
-    @Override
-    public int getSize() {
-        return super.getSize();
-    }
-
-    /**
-     * Is exist method.
+     * Method that checks if value exist already.
      *
      * @param e E
      * @return boolean
      */
-    private boolean isExist(E e) {
+    public boolean isExist(E e) {
         boolean result = true;
-        for (int i = 0; i < size; i++) {
-            if (container[i].equals(e)) {
+        Node<E> node = first;
+        while (node != null) {
+            if (node.item.equals(e)) {
                 result = false;
                 break;
+            } else {
+                node = node.next;
             }
         }
         return result;
