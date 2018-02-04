@@ -1,7 +1,5 @@
 package ru.skilanov.io.set;
 
-import java.util.Arrays;
-
 /**
  * Hash table class.
  *
@@ -11,7 +9,7 @@ public class SimpleHashTable<E> {
     /**
      * Constant variable of default array length
      */
-    private static final int INITIAL_CAPACITY = 10;
+    private static final int INITIAL_CAPACITY = 16;
     /**
      * Default array
      */
@@ -26,14 +24,14 @@ public class SimpleHashTable<E> {
      *
      * @param initialCapacity int
      */
-    public SimpleHashTable(int initialCapacity) {
+    private SimpleHashTable(int initialCapacity) {
         this.dataKeys = new DataKey[initialCapacity];
     }
 
     /**
      * Constructor that init size.
      */
-    public SimpleHashTable() {
+    SimpleHashTable() {
         this(INITIAL_CAPACITY);
     }
 
@@ -45,19 +43,35 @@ public class SimpleHashTable<E> {
      */
     private int hash(E e) {
         int result = e.hashCode() % dataKeys.length;
+        if (result < 0) {
+            result = Math.abs(result);
+        }
         return result;
     }
 
     /**
      * Method increase size of the array.
      *
-     * @param size int
+     * @param newCapacity int
      */
-    private void increaseSize(int size) {
-        int arraySize = dataKeys.length;
-        if (size > arraySize) {
-            int newSize = arraySize * 2;
-            dataKeys = Arrays.copyOf(dataKeys, newSize);
+    private void increaseSize(int newCapacity) {
+        DataKey<E>[] oldTable = dataKeys;
+        DataKey<E>[] newTable = new DataKey[newCapacity];
+        transfer(newTable);
+        dataKeys = newTable;
+    }
+
+    /**
+     * Method that transfers indexes from old to new array.
+     *
+     * @param newTable DataKey
+     */
+    private void transfer(DataKey<E>[] newTable) {
+        int oldTable = dataKeys.length;
+        int index;
+        for (int i = 0; i < oldTable; i++) {
+            index = dataKeys[i].getValue().hashCode() % newTable.length;
+            newTable[index] = dataKeys[i];
         }
     }
 
@@ -70,14 +84,16 @@ public class SimpleHashTable<E> {
     public boolean add(E e) {
         boolean result = false;
         int hashKey = hash(e);
-        increaseSize(size + 1);
+        if (size == dataKeys.length) {
+            increaseSize(dataKeys.length * 2);
+        }
+
         if (contains(e)) {
             return result;
         } else if (dataKeys[hashKey] == null) {
             dataKeys[hashKey] = new DataKey<>(e);
             size++;
             result = true;
-
         }
         return result;
     }
@@ -89,8 +105,7 @@ public class SimpleHashTable<E> {
      * @return E
      */
     public E get(E e) {
-        int result = hash(e);
-        return (E) dataKeys[result];
+        return (E) dataKeys[hash(e)];
     }
 
     /**
