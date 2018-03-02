@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 
 public class HashMap<K, V> implements HashMapContainer {
     /**
-     * Conatant variable of the array size
+     * Constant variable of the array size
      */
     private static final int INITIAL_CAPACITY = 10;
     /**
@@ -43,8 +43,7 @@ public class HashMap<K, V> implements HashMapContainer {
      * @return int
      */
     private int hash(@NotNull Object key) {
-        int hashedKey = key.hashCode() % container.length;
-        return hashedKey;
+        return key.hashCode() % container.length;
     }
 
     /**
@@ -109,6 +108,10 @@ public class HashMap<K, V> implements HashMapContainer {
             result = true;
         }
         return result;
+    }
+
+    public int getSize() {
+        return container.length;
     }
 
     /**
@@ -225,7 +228,16 @@ public class HashMap<K, V> implements HashMapContainer {
          */
         @Override
         public boolean hasNext() {
-            return size != index;
+            boolean result = false;
+            if (index != size) {
+                for (int i = 0; i < size; i++) {
+                    if (container[i] != null) {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+            return result;
         }
 
         /**
@@ -235,10 +247,14 @@ public class HashMap<K, V> implements HashMapContainer {
          */
         @Override
         public Object next() {
+            Object result;
             if (!hasNext()) {
                 throw new NoSuchElementException();
             }
-            return container[index++];
+            if (hasNext()) {
+                result = container[index++];
+            } else result = null;
+            return result;
         }
     }
 }

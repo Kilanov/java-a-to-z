@@ -53,14 +53,9 @@ public class HashMapTest {
         HashMap map = new HashMap();
         map.insert(1, "one");
         map.insert(2, "two");
-        map.insert(3, "three");
-        map.insert(4, "four");
+
 
         Iterator iterator = map.iterator();
-        Assert.assertTrue(iterator.hasNext());
-        iterator.next();
-        Assert.assertTrue(iterator.hasNext());
-        iterator.next();
         Assert.assertTrue(iterator.hasNext());
         iterator.next();
         Assert.assertTrue(iterator.hasNext());
