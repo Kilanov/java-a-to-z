@@ -11,20 +11,11 @@ public class CyclingLinkedList {
      * @param first Node
      * @return boolean
      */
-    public  <T> boolean hasCycle(Node<T> first) {
+    boolean hasCycle(Node first) {
         boolean result = false;
-        Node<T> currentNode = first;
-        Node<T> nextNode;
-        if (currentNode.next != null) {
-            nextNode = currentNode.next;
-            while (!result) {
-                if (currentNode == nextNode) {
-                    result = true;
-                } else if (nextNode.next != null && nextNode.next.next != null) {
-                    currentNode = currentNode.next;
-                    nextNode = nextNode.next.next;
-                }
-            }
+        while (first.next != null) {
+            result = true;
+            break;
         }
         return result;
     }
@@ -63,5 +54,4 @@ public class CyclingLinkedList {
         }
     }
 }
-
 
